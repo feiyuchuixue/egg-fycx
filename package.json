@@ -11,6 +11,7 @@
     "egg-mysql": "^3.0.0",
     "egg-scripts": "^2.11.0",
     "egg-sequelize": "^5.2.1",
+    "mongodb": "^3.4.1",
     "mysql2": "^2.1.0"
   },
   "devDependencies": {

@@ -28,9 +28,7 @@ class AppBootHook {
   }
   // 应用启动完成
   async didReady() {
-    const { model } = this.app;
-    // 初始化数据库
-    model.sync({ force: false });
+
     console.log('插件启动完毕');
     // Worker is ready, can do some things
     // don't need to block the app boot.

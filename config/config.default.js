@@ -32,6 +32,17 @@ module.exports = appInfo => {
     agent: false,
   }
 
+  config.mongo = {
+    host: '',
+    port: '',
+    database: '',
+    user: '',
+    password: '',
+    poolSize: 100,
+
+  }
+
+
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1577497736649_4148';
 
