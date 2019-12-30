@@ -21,7 +21,7 @@ class HomeController extends Controller {
        createCollection()
    * @returns {Promise<void>}
    */
-
+  // 查询单条
   async findOne() {
     const { ctx, app } = this;
     // mongo.find('*tableName', { query, skip, limit, project, sort, options });
@@ -30,9 +30,10 @@ class HomeController extends Controller {
     ctx.body = mongoResult;
   }
 
+  // 查询list
   async find() {
     const { ctx, app } = this;
-    const mongoResult = await app.mongo.find('test', { query: { }, project: { _id: -1, name: -1 }, sort: { _id: 1 } });
+    const mongoResult = await app.mongo.find('test', { query: { }, /* project: { _id: -1, name: -1 },*/ sort: { _id: 1 } });
     mongoResult.forEach(function(e) {
       console.log(e);
 
@@ -41,6 +42,7 @@ class HomeController extends Controller {
     ctx.body = mongoResult;
   }
 
+  // 聚合
   async aggregate() {
     const { ctx, app } = this;
     let recordCondition;
@@ -52,6 +54,21 @@ class HomeController extends Controller {
 
     ctx.body = mongoResult;
   }
+  // 删除
+  async remove() {
+    const { ctx, app } = this;
+    const mongoResult = await app.mongo.findOneAndDelete('test', { filter: { _id: ObjectId('5e096049043a78c95c4cc0ac') } });
+    ctx.body = mongoResult;
+  }
+  // 修改
+  async update() {
+    const { ctx, app } = this;
+    const mongoResult = await app.mongo.findOneAndUpdate('test', { filter: { _id: '111111' }, update: {
+      $set: { title: '1111' },
+    } });
+    ctx.body = mongoResult;
+  }
+
 
 }
 
