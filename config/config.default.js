@@ -33,12 +33,17 @@ module.exports = appInfo => {
   }
 
   config.mongo = {
-    host: '',
-    port: '',
-    database: '',
-    user: '',
-    password: '',
-    poolSize: 100,
+    client: {
+      host: '127.0.0.1',
+      port: '27027',
+      name: 'fycx_db',
+      user: 'Liuty',
+      password: '448088',
+      options: {
+        authSource: 'admin',
+        maxPoolSize: 20,
+      },
+    },
 
   }
 

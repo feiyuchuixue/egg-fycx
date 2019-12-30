@@ -7,5 +7,9 @@ module.exports = {
     enable: true,
     package: 'egg-mysql',
   },
+  mongo: {
+    enable: true,
+    package: 'egg-mongo-native',
+  },
 };
 
