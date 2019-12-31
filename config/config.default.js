@@ -30,7 +30,7 @@ module.exports = appInfo => {
     app: true,
     // 是否加载到 agent 上，默认关闭
     agent: false,
-  }
+  };
 
   config.mongo = {
     client: {
@@ -41,11 +41,29 @@ module.exports = appInfo => {
       password: '448088',
       options: {
         authSource: 'admin',
-        maxPoolSize: 20,
+        poolSize: 20,
       },
     },
 
-  }
+  };
+
+  config.redis = {
+    clients: {
+      client: {
+        port: 16379,
+        host: '39.97.232.184',
+        password: 'memory',
+        db: 0, // 数据库
+      },
+      // 用于发布订阅
+      client_pub: {
+        port: 16379,
+        host: '39.97.232.184',
+        password: 'memory',
+        db: 0,
+      },
+    },
+  };
 
 
   // use for cookie sign key, should change to your own and keep security

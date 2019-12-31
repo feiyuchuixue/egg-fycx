@@ -6,4 +6,5 @@
 module.exports = app => {
   require('./routers/mongoTest')(app);
   require('./routers/mysqlTest')(app);
+  require('./routers/redisTest')(app);
 };

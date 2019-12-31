@@ -1,7 +1,7 @@
 'use strict';
 const ObjectId = require('mongodb').ObjectId;
 const Controller = require('egg').Controller;
-class HomeController extends Controller {
+class MongoController extends Controller {
   /**
        *
        *=========================egg-mongo 支持的api 如下
@@ -22,16 +22,19 @@ class HomeController extends Controller {
    * @returns {Promise<void>}
    */
   // 查询单条
-  async findOne() {
+  async findOne1() {
+
     const { ctx, app } = this;
     // mongo.find('*tableName', { query, skip, limit, project, sort, options });
     const mongoResult = await app.mongo.findOne('test', { query: { _id: ObjectId('5e096049043a78c95c4cc0ac') } });
+    console.log('mongoResult ======', mongoResult);
 
     ctx.body = mongoResult;
   }
 
   // 查询list
-  async find() {
+  async find1() {
+    console.log('2222');
     const { ctx, app } = this;
     const mongoResult = await app.mongo.find('test', { query: { }, /* project: { _id: -1, name: -1 },*/ sort: { _id: 1 } });
     mongoResult.forEach(function(e) {
@@ -72,4 +75,4 @@ class HomeController extends Controller {
 
 }
 
-module.exports = HomeController;
+module.exports = MongoController;
