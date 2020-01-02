@@ -15,5 +15,9 @@ module.exports = {
     enable: true,
     package: 'egg-redis',
   },
+  helper: {
+    enable: true,
+    package: 'egg-helper',
+  },
 };
 

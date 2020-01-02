@@ -1,6 +1,6 @@
 'use strict';
-const Controller = require('egg').Controller;
-class MysqlController extends Controller {
+const BaseController = require('../base/BaseController');
+class MysqlController extends BaseController {
 
   /**
    * mysql CRUD api

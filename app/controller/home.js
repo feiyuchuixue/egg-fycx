@@ -1,7 +1,7 @@
 'use strict';
 const ObjectId = require('mongodb').ObjectId;
-const Controller = require('egg').Controller;
-class HomeController extends Controller {
+const BaseController = require('../base/BaseController');
+class HomeController extends BaseController {
   async index() {
     const { ctx, app } = this;
     console.log('config ===', this.app.config.mysql);

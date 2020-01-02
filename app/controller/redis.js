@@ -1,6 +1,6 @@
 'use strict';
-const Controller = require('egg').Controller;
-class RedisController extends Controller {
+const BaseController = require('../base/BaseController');
+class RedisController extends BaseController {
   async get() {
     const { ctx, app } = this;
     console.log('app.redis == ', app.redis.clients.get('client'));
