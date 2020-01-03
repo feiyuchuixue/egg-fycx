@@ -11,26 +11,26 @@ class BaseController extends Controller {
 
   async success(msg, data) {
     message.recode = 0;
-    message.msg = msg;
+    message.msg = msg || 'success';
     message.state = true;
-    message.data = data;
+    message.data = data || {};
     return message;
   }
 
 
   async err(msg, data) {
     message.recode = -1;
-    message.msg = msg;
+    message.msg = msg || 'fail';
     message.state = false;
-    message.data = data;
+    message.data = data || {};
     return message;
   }
 
   async msg(recode, state, msg, data) {
-    message.recode = recode;
-    message.msg = msg;
-    message.state = state;
-    message.data = data;
+    message.recode = recode || 0;
+    message.msg = msg || 'success';
+    message.state = state || true;
+    message.data = data || {};
     return message;
   }
 

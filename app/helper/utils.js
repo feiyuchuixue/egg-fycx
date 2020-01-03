@@ -1,16 +1,16 @@
 'use strict';
-
-// eslint-disable-next-line no-unused-vars
+const uuid = require('node-uuid');
 module.exports = app => {
+
   return {
-    foo() {
-      // app is Application的实例
-      return 'hello helper';
+    isNull(data) {
+      const flag = (data === '' || data === undefined || data === null || Object.keys(data).length === 0);
+      return flag;
     },
 
-    test() {
-      // app is Application的实例
-      return 'test helper';
+    generateUuid() {
+      return uuid.v4().replace(/\-/g, '');
     },
+
   };
 };
