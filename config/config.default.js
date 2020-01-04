@@ -75,13 +75,13 @@ module.exports = appInfo => {
   config.cors = {
     origin: '*',
     allowMethods: 'GET,POST',
-  }
+  };
 
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1577497736649_4148';
 
   // add your middleware config here
-  config.middleware = [ 'reqRepLog' ];
+  config.middleware = [ 'reqRepLog', 'forbiddenIp' ];
 
   // add your user config here
   const userConfig = {

@@ -36,8 +36,8 @@ class MongoController extends BaseController {
   async find1() {
     console.log('2222');
     const { ctx, app } = this;
-    const testValue = await this.ctx.helper.utils.generateUuid();
-    console.log(testValue)
+    await ctx.service.publishRedisService.publishForbiddenIp();
+
     const mongoResult = await app.mongo.find('test', { query: { }, /* project: { _id: -1, name: -1 },*/ sort: { _id: 1 } });
     mongoResult.forEach(function(e) {
       console.log(e);
