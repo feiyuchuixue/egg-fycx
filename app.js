@@ -43,26 +43,16 @@ class AppBootHook {
     // 应用已经启动完毕
     // 获取ctx
     const ctx = await this.app.createAnonymousContext();
-    // 订阅redis 事件
-    this.app.redis.clients.get('client').subscribe('forbidden_ip', (err, result) => {
-      if (err) {
-        throw err;
-      }
-      console.log(result, 'psubscribe');
-    });
 
-    // 处理订阅到的消息
-    this.app.redis.clients.get('client').on('message', (channel, message) => {
-      switch (channel) {
-        case 'forbidden_ip':
-          // 更新ip名单
-          ctx.service.catchService.update();
-          break;
-        default:
-          ctx.logger.info('未处理的订阅事件：channel-【' + channel + '】,message-【' + message + '】');
-      }
-      console.log(message, channel);
-      // console.log(message, 'music');
+    // eslint-disable-next-line no-unused-vars
+    this.app.messenger.on('forbidden_ip', by => {
+      console.log(' 收到 master 的 请求。。。。。。。。。。。。。。。');
+      // create an anonymous context to access service
+      const ctx = this.app.createAnonymousContext();
+      ctx.runInBackground(async () => {
+        // 更新ip名单
+        await ctx.service.catchService.update();
+      });
     });
 
     // 项目启动，初始化更新ip名单
