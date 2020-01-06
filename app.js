@@ -46,7 +46,7 @@ class AppBootHook {
 
     // eslint-disable-next-line no-unused-vars
     this.app.messenger.on('forbidden_ip', by => {
-      console.log(' 收到 master 的 请求。。。。。。。。。。。。。。。');
+      console.log(' 收到agent的请求...');
       // create an anonymous context to access service
       const ctx = this.app.createAnonymousContext();
       ctx.runInBackground(async () => {

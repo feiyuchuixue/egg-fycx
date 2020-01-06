@@ -63,6 +63,7 @@ module.exports = appInfo => {
         db: 0,
       },
     },
+    agent: true,
   };
 
   config.security = {
