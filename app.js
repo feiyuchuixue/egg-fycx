@@ -37,18 +37,17 @@ class AppBootHook {
 
     // 例如：从数据库加载数据到内存缓存
     // this.app.cacheData = await this.app.model.query(QUERY_CACHE_SQL);
-  }
 
-  async didReady() {
     // 应用已经启动完毕
     // 获取ctx
     const ctx = await this.app.createAnonymousContext();
 
     // eslint-disable-next-line no-unused-vars
     this.app.messenger.on('forbidden_ip', by => {
-      console.log(' 收到agent的请求...');
+      this.app.logger.info(' 收到agent的请求...');
       // create an anonymous context to access service
       const ctx = this.app.createAnonymousContext();
+      // 这里面的异常都会统统被 Backgroud 捕获掉，并打印错误日志
       ctx.runInBackground(async () => {
         // 更新ip名单
         await ctx.service.catchService.update();
@@ -57,6 +56,11 @@ class AppBootHook {
 
     // 项目启动，初始化更新ip名单
     await ctx.service.catchService.update();
+  }
+
+  // eslint-disable-next-line no-empty-function
+  async didReady() {
+
   }
 
   async serverDidReady() {

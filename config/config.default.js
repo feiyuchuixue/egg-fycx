@@ -78,6 +78,12 @@ module.exports = appInfo => {
     allowMethods: 'GET,POST',
   };
 
+  config.proxy = true;
+  config.ipHeaders = 'X-Real-Ip, X-Forwarded-For';
+  config.maxIpsCount = 1;
+  config.protocolHeaders = 'X-Real-Proto, X-Forwarded-Proto';
+  config.hostHeaders = 'X-Forwarded-Host';
+
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1577497736649_4148';
 

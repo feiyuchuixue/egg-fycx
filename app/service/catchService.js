@@ -21,7 +21,6 @@ class CatchService extends Service {
 
 
   async update() {
-    console.log('forbidden_ip update  ...... ...... ..... ');
     const { ctx, app } = this;
     const forbiddenIpList = await app.mongo.find(cacheKey);
     const forbiddenIpArr = [];
