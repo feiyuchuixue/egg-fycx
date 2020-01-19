@@ -34,11 +34,11 @@ module.exports = appInfo => {
 
   config.mongo = {
     client: {
-      host: '127.0.0.1',
-      port: '27027',
+      host: '123.56.235.63',
+      port: '22379',
       name: 'fycx_db',
-      user: 'Liuty',
-      password: '448088',
+      user: 'liuty',
+      password: 'liuty8088',
       options: {
         authSource: 'admin',
         poolSize: 20,
@@ -50,16 +50,16 @@ module.exports = appInfo => {
   config.redis = {
     clients: {
       client: {
-        port: 16379,
-        host: '39.97.232.184',
-        password: 'memory',
+        port: 26379,
+        host: '123.56.235.63',
+        password: 'liuty8088',
         db: 0, // 数据库
       },
       // 用于发布订阅
       client_pub: {
-        port: 16379,
-        host: '39.97.232.184',
-        password: 'memory',
+        port: 26379,
+        host: '123.56.235.63',
+        password: 'liuty8088',
         db: 0,
       },
     },
@@ -78,6 +78,13 @@ module.exports = appInfo => {
     allowMethods: 'GET,POST',
   };
 
+
+  config.jwt = {
+    enable: true,
+    // 哪些请求不需要认证
+    ignore: [ '/user/register' ],
+  };
+
   config.proxy = true;
   config.ipHeaders = 'X-Real-Ip, X-Forwarded-For';
   config.maxIpsCount = 1;
@@ -88,7 +95,7 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1577497736649_4148';
 
   // add your middleware config here
-  config.middleware = [ 'reqRepLog', 'forbiddenIp' ];
+  config.middleware = [ 'reqRepLog', 'forbiddenIp', 'jwt' ];
 
   // add your user config here
   const userConfig = {

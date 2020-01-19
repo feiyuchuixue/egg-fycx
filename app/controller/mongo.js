@@ -23,8 +23,10 @@ class MongoController extends BaseController {
    */
   // 查询单条
   async findOne1() {
-
+    const uuid = this.ctx.helper.Utils.generateUuid();
+    console.log('uuid', uuid);
     const { ctx, app } = this;
+
     // mongo.find('*tableName', { query, skip, limit, project, sort, options });
     const mongoResult = await app.mongo.findOne('test', { query: { _id: ObjectId('5e096049043a78c95c4cc0ac') } });
     console.log('mongoResult ======', mongoResult);
