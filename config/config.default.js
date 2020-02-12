@@ -12,6 +12,20 @@ module.exports = appInfo => {
    **/
   const config = exports = {};
 
+  /**
+   * 项目端口配置及ip配置
+   */
+  config.cluster = {
+    listen: {
+      path: '',
+      port: 7002,
+      hostname: '0.0.0.0', // localhost
+    },
+  };
+
+  /**
+   * mysql 数据库连接
+   */
   config.mysql = {
     // 单数据库信息配置
     client: {
@@ -32,6 +46,9 @@ module.exports = appInfo => {
     agent: false,
   };
 
+  /**
+   * mongodb 数据库连接
+   */
   config.mongo = {
     client: {
       host: '123.56.235.63',
@@ -47,6 +64,9 @@ module.exports = appInfo => {
 
   };
 
+  /**
+   * redis数据库连接和发布订阅监听
+   */
   config.redis = {
     clients: {
       client: {
@@ -66,25 +86,32 @@ module.exports = appInfo => {
     agent: true,
   };
 
+  /**
+   * 接口跨域权限设置
+   */
   config.security = {
     csrf: {
       enable: false,
     },
     domainWhiteList: [ '*' ],
   };
-
   config.cors = {
     origin: '*',
     allowMethods: 'GET,POST',
   };
 
-
+  /**
+   * jsonWebToken 验证设置
+   */
   config.jwt = {
     enable: true,
     // 哪些请求不需要认证
     ignore: [ '/user/register' ],
   };
 
+  /**
+   * nginx代理转发配置，用于获取真实ip
+   */
   config.proxy = true;
   config.ipHeaders = 'X-Real-Ip, X-Forwarded-For';
   config.maxIpsCount = 1;

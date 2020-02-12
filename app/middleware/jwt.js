@@ -3,6 +3,12 @@ const fs = require('fs');
 const path = require('path');
 const jwt = require('jsonwebtoken');
 
+/**
+ * 接口用户授权验证
+ * @param options
+ * @param app
+ * @returns {userInterceptor}
+ */
 module.exports = (options, app) => {
   return async function userInterceptor(ctx, next) {
     let authToken = ctx.header.authorization; // 获取header里的authorization

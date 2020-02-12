@@ -1,5 +1,10 @@
 'use strict';
 
+/**
+ * ip过滤
+ * @param app
+ * @returns {forbiddenIpMiddleware}
+ */
 module.exports = app => {
 
 
