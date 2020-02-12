@@ -3,13 +3,11 @@ const BaseController = require('../base/BaseController');
 class SysAdminController extends BaseController {
   async login() {
     const { ctx, app } = this;
-    const uuid = this.ctx.helper.Utils.generateUuid();
-    console.log('uuid', uuid);
-    // const result = await app.redis.get('Album:view:1eJMtNfi1561771793482');
-    const result = await app.redis.clients.get('client').hgetall('Live:comment:11223344');
-    console.log('result doc = ', result);
-
-    ctx.body = result;
+    console.log(' data == ', this.ctx.request.body);
+    const token = this.ctx.helper.Utils.initToken(this.ctx.request.body);
+    await app.redis.clients.get('client').set('loginToken:' + this.ctx.request.body.userId, token, 'ex', 7200);
+    console.log('token', token);
+    ctx.body = await this.success('登录成功', { token, expires: 7200 });
   }
 
   async register() {
@@ -25,6 +23,12 @@ class SysAdminController extends BaseController {
       doc: sysAdmin,
     });
     ctx.body = await this.success('注册成功');
+  }
+
+  async queryTest() {
+    const { ctx, app } = this;
+    console.log(' body =============', this.ctx.request.body);
+    ctx.body = await this.success('认证成功');
   }
 
 

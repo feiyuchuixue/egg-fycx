@@ -2,27 +2,28 @@
 const fs = require('fs');
 const path = require('path');
 const jwt = require('jsonwebtoken');
+const prefix = 'loginToken:';
 
 /**
  * 接口用户授权验证
  * @param options
  * @param app
- * @returns {userInterceptor}
+ * @return {userInterceptor}
  */
 module.exports = (options, app) => {
   return async function userInterceptor(ctx, next) {
-    let authToken = ctx.header.authorization; // 获取header里的authorization
+    const authToken = ctx.header.authorization; // 获取header里的authorization
     if (authToken) {
-      authToken = authToken.substring(7);
+      // authToken = authToken.substring(7);
       const res = verifyToken(authToken); // 解密获取的Token
       console.log('res', res);
-      if (res.corpid && res.userid) {
+      if (res.userId) {
         // 如果需要限制单端登陆或者使用过程中废止某个token，或者更改token的权限。也就是说，一旦 JWT 签发了，在到期之前就会始终有效
         // 此处使用redis进行保存
-        const redis_token = await app.redis.get('loginToken').get(res.corpid + res.userid); // 获取保存的token
+        const redis_token = await app.redis.clients.get('client').get(prefix + res.userId); // 获取保存的token
         if (authToken === redis_token) {
-          ctx.locals.corpid = res.corpid;
-          ctx.locals.userid = res.userid;
+          // ctx.locals.corpid = res.corpid;
+          ctx.locals.userId = res.userId;
           await next();
         } else {
 

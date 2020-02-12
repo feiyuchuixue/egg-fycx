@@ -14,11 +14,12 @@ module.exports = app => {
     generateUuid() {
       return uuid.v4().replace(/\-/g, '');
     },
+
     // 生成token
     // eslint-disable-next-line no-unused-vars
     initToken(data, expires = 7200) {
       const exp = Math.floor(Date.now() / 1000) + expires;
-      const cert = fs.readFileSync(path.join(__dirname, '../public/rsa_private_key.pem')); // 私钥，看后面生成方法
+      const cert = fs.readFileSync(path.join(__dirname, '../public/rsa_private_key.pem')); // 私钥
       const token = jwt.sign({ data, exp }, cert, { algorithm: 'RS256' });
       return token;
     },

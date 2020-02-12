@@ -106,7 +106,7 @@ module.exports = appInfo => {
   config.jwt = {
     enable: true,
     // 哪些请求不需要认证
-    ignore: [ '/user/register' ],
+    ignore: [ '/user/register', '/user/login' ],
   };
 
   /**
