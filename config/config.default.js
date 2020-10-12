@@ -30,15 +30,15 @@ module.exports = appInfo => {
     // 单数据库信息配置
     client: {
       // host
-      host: '39.97.232.184',
+      host: '',
       // 端口号
-      port: '13306',
+      port: '',
       // 用户名
-      user: 'gwzz',
+      user: '',
       // 密码
-      password: 'gwzz',
+      password: '',
       // 数据库名
-      database: 'gwzz_db',
+      database: '',
     },
     // 是否加载到 app 上，默认开启
     app: true,
@@ -51,11 +51,11 @@ module.exports = appInfo => {
    */
   config.mongo = {
     client: {
-      host: '123.56.235.63',
-      port: '22379',
-      name: 'fycx_db',
-      user: 'liuty',
-      password: 'liuty8088',
+      host: '',
+      port: '',
+      name: '',
+      user: '',
+      password: '',
       options: {
         authSource: 'admin',
         poolSize: 20,
@@ -66,20 +66,21 @@ module.exports = appInfo => {
 
   /**
    * redis数据库连接和发布订阅监听
+   *
    */
   config.redis = {
     clients: {
       client: {
-        port: 26379,
-        host: '123.56.235.63',
-        password: 'liuty8088',
+        port: 6379,
+        host: '',
+        password: '',
         db: 0, // 数据库
       },
       // 用于发布订阅
       client_pub: {
-        port: 26379,
-        host: '123.56.235.63',
-        password: 'liuty8088',
+        port: 6379,
+        host: '',
+        password: '',
         db: 0,
       },
     },
