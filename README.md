@@ -1,10 +1,18 @@
-# fycx
+# egg-fycx
 
+基于eggjs 搭建的基础框架
 
+# TODO
+
+- [x] mysql连接及增删改查
+- [x] mongo连接及增删改查
+- [x] redis及发布订阅
+- [x] jwt认证(rsa非对称性加密)
+- [x] forbidden_ip中间件(ip黑名单)
+- [x] reqRepLog中间件(请求、返回日志)
+- [x] agent.js 的应用（[agent、ipc](https://github.com/eggjs/egg/blob/master/docs/source/zh-cn/core/cluster-and-ipc.md)通道进行redis事件订阅）
 
 ## QuickStart
-
-<!-- add docs here for user -->
 
 see [egg docs][egg] for more detail.
 
